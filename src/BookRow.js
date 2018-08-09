@@ -14,7 +14,9 @@ class BookRow extends Component {
         <td>{book.title}</td>
         <td>{authors}</td>
         <td>
-          <button className="btn" style={{ backgroundColor: book.color }} />
+          <Link to={`/books/${book.color}`}>
+            <button className="btn" style={{ backgroundColor: book.color }} />
+          </Link>
         </td>
       </tr>
     );
