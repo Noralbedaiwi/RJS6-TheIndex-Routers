@@ -47,7 +47,7 @@ class BookList extends Component {
     return (
       <div className="books">
         <h3>Books</h3>
-        <SearchBar handleChange={this.filterBooks} />
+        <SearchBar changeHandler={this.filterBooks} />
         {allBooksButton}
         <BookTable books={books} />
       </div>
