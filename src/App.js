@@ -47,7 +47,7 @@ class App extends Component {
   }
 
   getView() {
-    if (this.state.authorsLoading) {
+    if (this.state.authorsLoading || this.state.booksLoading) {
       return <Loading />;
     } else {
       return (
