@@ -9,7 +9,6 @@ class BookList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: this.props.books,
       filteredBooks: this.props.books
     };
 
@@ -18,9 +17,9 @@ class BookList extends Component {
 
   filterBooks(query) {
     query = query.toLowerCase();
-    let filteredBooks = this.state.books.filter(book => {
-      return `${book.title}`.toLowerCase().includes(query);
-    });
+    let filteredBooks = this.props.books.filter(book =>
+      book.title.toLowerCase().includes(query)
+    );
     this.setState({ filteredBooks });
   }
 
@@ -30,12 +29,10 @@ class BookList extends Component {
 
   render() {
     const bookColor = this.props.match.params.bookColor;
-    let books;
+    let books = this.state.filteredBooks;
     let allBooksButton;
 
-    if (!bookColor) {
-      books = this.state.filteredBooks;
-    } else {
+    if (bookColor) {
       books = this.filterBooksByColor(bookColor);
       allBooksButton = (
         <Link to="/books">
@@ -45,7 +42,7 @@ class BookList extends Component {
     }
 
     return (
-      <div className="books">
+      <div>
         <h3>Books</h3>
         <SearchBar changeHandler={this.filterBooks} />
         {allBooksButton}
